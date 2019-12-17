@@ -6,7 +6,7 @@
 /*   By: mcabrol <mcabrol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 17:04:17 by mcabrol           #+#    #+#             */
-/*   Updated: 2019/12/17 17:04:19 by mcabrol          ###   ########.fr       */
+/*   Updated: 2019/12/17 17:14:47 by mcabrol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		rpn_calc(char *expr)
 
 int		check(char *expr)
 {
-	if (!is_num(expr[0]) || expr[ft_strlen(expr) - 1] == ' ')
+	if (!is_num(expr[0]) || !is_opt(expr[ft_strlen(expr) - 1]))
 		return (1);
 	while (*expr)
 	{
