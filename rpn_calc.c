@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpn_calc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcabrol <mcabrol@student.42.fr>            +#+  +:+       +#+        */
+/*   By: mcabrol <mcabrol@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 17:04:17 by mcabrol           #+#    #+#             */
-/*   Updated: 2019/12/17 17:14:47 by mcabrol          ###   ########.fr       */
+/*   Updated: 2019/12/18 14:13:58 by bsuarez-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int		is_opt(char c)
 int		rpn_calc(char *expr)
 {
 	int 	stack[BUFF];
-	int 	nb;
 	int		i;
 	int		j;
 
@@ -79,17 +78,43 @@ int		rpn_calc(char *expr)
 
 int		check(char *expr)
 {
-	if (!is_num(expr[0]) || !is_opt(expr[ft_strlen(expr) - 1]))
+	int num;
+	int last;
+	int opt;
+
+	num = 0;
+	opt = 0;
+	if (!is_num(expr[0]))
 		return (1);
 	while (*expr)
 	{
 		if (!is_num(*expr) && !is_opt(*expr) && *expr != ' ')
+		{
+			if (num == 1)
+				return (0);
 			return (1);
-		if (*expr == ' ' && *(expr + 1) == ' ')
-			return (1);
+		}
+		if (is_num(*expr))
+		{
+			while (is_num(*expr))
+				expr++;
+			num++;
+			last = 1;
+		}
+		if (is_opt(*expr))
+		{
+			opt++;
+			if (*(expr - 1) != ' ')
+				return (1);
+			last = 2;
+			}
 		expr++;
 	}
-	return (0);
+	// printf ("%i | %i\n", num, opt);
+	if ((num - 1 == opt && last == 2))
+		return (0);
+	else
+		return (1);
 }
 
 int		main(int ac, char **av)
