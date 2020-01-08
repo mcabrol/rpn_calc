@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rpn_calc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mcabrol <mcabrol@student.s19.be>           +#+  +:+       +#+        */
+/*   By: mcabrol <mcabrol@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 17:04:17 by mcabrol           #+#    #+#             */
-/*   Updated: 2019/12/18 14:13:58 by bsuarez-         ###   ########.fr       */
+/*   Updated: 2020/01/08 17:54:06 by mcabrol          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #define BUFF	100
 
-int 	op(char operator, int a, int b)
+int		op(char operator, int a, int b)
 {
 	if (operator == '+')
 		return (a + b);
@@ -54,7 +54,7 @@ int		is_opt(char c)
 
 int		rpn_calc(char *expr)
 {
-	int 	stack[BUFF];
+	int		stack[BUFF];
 	int		i;
 	int		j;
 
@@ -110,7 +110,6 @@ int		check(char *expr)
 			}
 		expr++;
 	}
-	// printf ("%i | %i\n", num, opt);
 	if ((num - 1 == opt && last == 2))
 		return (0);
 	else
